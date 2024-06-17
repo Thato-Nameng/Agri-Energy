@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+    var user = UserManager.GetUserAsync(User).Result;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>Hello, @user.FirstName @user.LastName!</p>
+    }
+    else
+    {
+        <p>Please <a href="/Account/Login">login</a> to continue.</p>
+    }
+</div>

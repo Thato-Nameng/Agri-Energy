@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Agri_Energy.Models.Farmer>
+
+@{
+    ViewData["Title"] = "List of Farmers";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="get" asp-action="ListFarmers">
+    <div class="form-group">
+        <input type="text" name="searchString" class="form-control" placeholder="Search by name or surname" value="@ViewData["CurrentFilter"]" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var farmer in Model)
+        {
+            <tr>
+                <td>@farmer.Name</td>
+                <td>@farmer.Surname</td>
+                <td>@farmer.Age</td>
+                <td>@farmer.Email</td>
+                <td>
+                    <a asp-action="ViewFarmerProducts" asp-route-id="@farmer.Id" class="btn btn-primary">View Products</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

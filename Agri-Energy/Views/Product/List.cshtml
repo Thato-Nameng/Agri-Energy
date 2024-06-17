@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Agri_Energy.Models.Product>
+
+@{
+    ViewData["Title"] = "Existing Products";
+}
+
+<h1>Existing Products</h1>
+
+<form method="get" asp-action="List">
+    <div class="form-group">
+        <input type="text" name="searchString" class="form-control" placeholder="Search by product name" value="@ViewData["CurrentFilter"]" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().ProductName)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Category)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Price)</th>
+            <th>@Html.DisplayNameFor(model => model.First().ProductionDate)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td>@Html.DisplayFor(modelItem => item.ProductionDate)</td>
+            </tr>
+        }
+    </tbody>
+</table>
